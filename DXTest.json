@@ -1,0 +1,12 @@
+{
+	"version": "1.0",
+	"type": "video",
+	"width": 2115,
+	"height": 664,
+	"title": "DX test",
+    "html": "<iframe src=\"https://cdn.lottielab.com/l/DkVcLJyHhKyKSc.html\" width=\"2115\" height=\"664\" frameborder=\"0\" allowfullscreen></iframe>",
+	"author_name": "DX",
+	"author_url": "http://www.DXnacca.com/",
+	"provider_name": "DX",
+	"provider_url": "https://dx3006.github.io/"
+}

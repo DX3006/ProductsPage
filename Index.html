@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <title>DXPoints Notification</title>
+    <meta charset="utf-8" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="alternate" type="application/json+oembed" href="DXTest.json" title="DX oEmbed">
+</head>
+<style>
+    body{
+        text-align:center;
+        height:2115;
+        width:664;
+    }
+    #test{
+        position:absolute;
+        top: 0%;
+        left: 0%;
+    }
+
+
+    .img{
+        
+        position:relative;
+        top:0%;
+        width: 150px;
+        height:150px;
+        margin:10px;
+        object-fit:cover;
+        transition:cubic-bezier(0.075, 0.82, 0.165, 1) all .3s;
+        transform: perspective(450px);
+        border-radius:20px;
+        transform-style: preserve-3d;
+        box-shadow: 0px 0px 0px #0000004d;
+            transform: perspective(450px) ;
+    }
+   
+</style>
+
+
+<body>
+  <img src="https://images.squarespace-cdn.com/content/v1/606d159a953867291018f801/1619987722169-VV6ZASHHZNRBJW9X0PLK/Key_Art_02_layeredjpg.jpg" class="img">
+    <img src="https://sm.ign.com/ign_br/game/t/the-elder-/the-elder-scrolls-v-skyrim_81xc.jpg" class="img">
+    
+  </body>
+
+<script>
+        
+    img=document.getElementsByClassName("img")
+    test=document.getElementById("test")
+    
+    for(c=0;c<img.length;c++){
+    img[c].addEventListener("mouseout", mouseOut);
+    img[c].onmousemove = findDocumentCoords;  
+    }
+
+
+    function findDocumentCoords(mouseEvent)
+    { 
+    //FireFox
+    xpos = mouseEvent.pageX;
+    ypos = mouseEvent.pageY;
+    x=(xpos-this.offsetLeft-this.width/2)/(this.width/2);
+    y=(ypos-this.offsetTop-this.height/2)/(this.height/2);
+
+    if(x>1){
+        x=1
+    }
+    if(x<-1){
+        x=-1
+    }
+    if(y>1){
+        y=1
+    }
+    if(y<-1){
+        y=-1
+    }
+    angle=20;
+    locomotion=10
+    b=1+y*.1+x*.1;
+    
+    this.style.cssText ="transform: perspective(450px) translate("+(locomotion*-x)+"px,"+(locomotion*-y)+"px) scale(1.4) rotatey("+(x*-angle)+"deg) rotatex("+(y*angle)+"deg) ; box-shadow: "+(locomotion*x)+"px "+(locomotion*y)+"px 20px #0000004d;  filter: brightness("+b+"); z-index:1;";
+    
+    
+    test.innerHTML="[ "+fixtext(x,2)+" , "+fixtext(y,2)+ " ]"; 
+    
+    }
+
+
+    function fixtext(num,sp){
+    a=num.toFixed(sp).toString()
+    if(a.length<sp+3){
+        f="&nbsp"+a
+    }else{
+        f=a
+    }
+    return f;
+    }
+    
+    
+    
+    function mouseOut() {
+    this.style.cssText  = "";
+    }    
+</script>
+
+</html>
